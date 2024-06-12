@@ -33,7 +33,7 @@ def login():
 
     if user and check_password_hash(user.password, password):
         access_token=create_access_token(
-            identity={"email":email,"role":user.role}
+            identity={"username":email,"role":user.role}
         )
         return jsonify(access_token=access_token)
     else:
