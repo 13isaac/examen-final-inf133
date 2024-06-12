@@ -1,6 +1,9 @@
 from flask import Flask
 from flask_jwt_extended import JWTManager
 from flask_swagger_ui import get_swaggerui_blueprint
+from app.controllers.user_controller import user_bp
+from app.controllers.restaurante_controller import restaurante_bp
+
 
 from app.database import db
 
@@ -32,6 +35,8 @@ db.init_app(app)
 # Inicializa la extensión JWTManager
 jwt = JWTManager(app)
 
+app.register_blueprint(user_bp,url_prefix="/api")
+app.register_blueprint(restaurante_bp,url_prefix="/api")
 
 # Crea las tablas si no existen
 with app.app_context():
